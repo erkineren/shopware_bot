@@ -1,10 +1,7 @@
 # ShopwareBot
-Shopware Backend Bot
+Shopware Backend Bot is library that supply to use programatically backend like creating invoice and shipping labels, managing pickware plugin stock activities, searching orders, articles, users etc.
 
-
-Shopware Backend Bot is library that supply to use programatically backend like a creta invoice etc..
-
-Modules:
+For now, these modules are available:
   - ArticleModule
   - CustomerModule
   - DhlModule
@@ -21,7 +18,7 @@ Modules:
 $ composer require erkineren/shopwarebot
 ```
 
-### Usage Example
+### Quick Start
 
 ```php
 use ShopwareBot\ShopwareBot;
