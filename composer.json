@@ -1,0 +1,26 @@
+{
+  "name": "erkineren/shopwarebot",
+  "type": "library",
+  "description": "Shopware Backend Bot",
+  "keywords": [
+    "shopware",
+    "bot"
+  ],
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Erkin Eren",
+      "email": "ernerkin@gmail.com"
+    }
+  ],
+  "require": {
+    "php-curl-class/php-curl-class": "^8.5",
+    "ext-json": "*",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "ShopwareBot\\": "src/"
+    }
+  }
+}
