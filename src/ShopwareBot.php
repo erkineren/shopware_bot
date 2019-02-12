@@ -7,6 +7,7 @@ use Curl\Curl;
 use ShopwareBot\Exceptions\BadUrlException;
 use ShopwareBot\Exceptions\CsrfException;
 use ShopwareBot\Modules\ArticleModule;
+use ShopwareBot\Modules\BaseModule;
 use ShopwareBot\Modules\CustomerModule;
 use ShopwareBot\Modules\DhlModule;
 use ShopwareBot\Modules\DpdModule;
@@ -34,6 +35,11 @@ use ShopwareBot\Modules\PluginsModule;
  */
 class ShopwareBot
 {
+
+    /**
+     * @var ShopwareBot[]
+     */
+    private static $_instances;
 
     /**
      * @var string
@@ -70,10 +76,11 @@ class ShopwareBot
      */
     protected $curl;
 
+
     /**
-     * @var ShopwareBot[]
+     * @var BaseModule[]
      */
-    private static $_instances;
+    protected $modules = [];
 
     /**
      * @param $site_url
@@ -116,13 +123,17 @@ class ShopwareBot
             return false;
         }
 
-        $className = '\\ShopwareBot\\Modules\\' . $matches[1];
+        $moduleName = $matches[1];
+        $className = '\\ShopwareBot\\Modules\\' . $moduleName;
 
         if (!class_exists($className)) {
             return false;
         }
 
-        return new $className($this);
+        if (!isset($this->modules[$moduleName]))
+            $this->modules[$moduleName] = new $className($this);
+
+        return $this->modules[$moduleName];
     }
 
     /**
