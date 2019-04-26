@@ -313,11 +313,15 @@ class OrderModule extends BaseModule
              * Find by documentTypeId
              */
             if ($document['typeId'] == $documentType) {
-                /*
-                 * change new Date(******) string to real date
-                 */
-                $document['date'] = filter_var($document['date'], FILTER_SANITIZE_NUMBER_INT);
-                $document['date'] = date("Y-m-d", $document['date'] / 1000);
+                $isValidDate = (bool)strtotime($document['date']);
+                if (!$isValidDate) {
+                    /*
+                     * change new Date(******) string to real date
+                     */
+                    $document['date'] = filter_var($document['date'], FILTER_SANITIZE_NUMBER_INT);
+                    $document['date'] = date("Y-m-d", $document['date'] / 1000);
+                }
+
 
                 /*
                  * Remove unnecessary data
