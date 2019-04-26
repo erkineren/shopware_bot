@@ -72,6 +72,9 @@ class BaseModule
      */
     public function wrapClassNames($jsonString, $convertDate = true)
     {
+        // if not string, nothing to do
+        if(!is_string($jsonString)) return $jsonString;
+
         $res = preg_replace_callback('/new \w+\([-\w]+\)/i', function ($a) {
 
             if (strpos($a[0], 'new Date(') === 0) {
