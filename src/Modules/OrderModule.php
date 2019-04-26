@@ -264,6 +264,7 @@ class OrderModule extends BaseModule
      * 'hash' => '049247763adsfdgfhgdfs',
      * );
      *
+     * @throws \Exception
      */
     protected function generateDocument(
         $orderId,
